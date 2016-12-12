@@ -1,7 +1,5 @@
-/* @flow */
-
-import React from 'react';
-import Helmet from 'react-helmet';
+import * as React from 'react';
+import * as Helmet from 'react-helmet';
 
 function Home() {
   return (

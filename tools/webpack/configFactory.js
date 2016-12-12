@@ -468,7 +468,27 @@ export default function webpackConfigFactory(buildOptions: BuildOptions) {
               path.resolve(appRootDir.get(), srcPath),
             ),
             ifProdClient(path.resolve(appRootDir.get(), 'src/html')),
-          ]),
+          ])
+        },
+
+        // TYPESCRIPT
+        {
+          test: /\.tsx?$/,
+          loader: [
+            {
+              loader: 'babel-loader',
+              query: plugins.bundles.babelConfig(buildOptions),
+            },
+            {
+              loader: 'ts-loader'
+            }
+          ],
+          include: removeEmpty([
+            ...bundleConfig.srcPaths.map(srcPath =>
+              path.resolve(appRootDir.get(), srcPath),
+            ),
+            ifProdClient(path.resolve(appRootDir.get(), 'src/html')),
+          ])
         },
 
         // CSS
